@@ -1,6 +1,6 @@
 package com.codewithmosh;
 
-import com.codewithmosh.decorator.Demo;
+import com.codewithmosh.flyweight.Demo;
 
 public class Main {
     public static void main(String[] args) {

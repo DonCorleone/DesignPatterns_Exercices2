@@ -10,6 +10,8 @@ public class SpreadSheet {
   private final int fontSize = 12;
   private final boolean isBold = false;
 
+  CellFormatFactory _factory = new CellFormatFactory();
+
   private Cell[][] cells = new Cell[MAX_ROWS][MAX_COLS];
 
   public SpreadSheet() {
@@ -26,7 +28,9 @@ public class SpreadSheet {
     ensureCellExists(row, col);
 
     var cell = cells[row][col];
-    cells[row][col].setFontFamily(fontFamily);
+    var currentCellFormat = cell.getCellFormat();
+    var cellFormat = _factory.getCellFormat(fontFamily, currentCellFormat.getFontSize(), currentCellFormat.isBold());
+    cells[row][col].setCellFormat(cellFormat);
   }
 
   private void ensureCellExists(int row, int col) {
@@ -41,7 +45,7 @@ public class SpreadSheet {
     for (var row = 0; row < MAX_ROWS; row++)
       for (var col = 0; col < MAX_COLS; col++) {
         var cell = new Cell(row, col);
-        cell.setFontFamily(fontFamily);
+        cell.setCellFormat(_factory.getCellFormat(fontFamily, fontSize, isBold));
         cells[row][col] = cell;
       }
   }

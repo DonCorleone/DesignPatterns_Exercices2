@@ -4,9 +4,7 @@ public class Cell {
   private final int row;
   private final int column;
   private String content;
-  private String fontFamily;
-  private int fontSize;
-  private boolean isBold;
+  private CellFormat cellFormat;
 
   public Cell(int row, int column) {
     this.row = row;
@@ -21,31 +19,14 @@ public class Cell {
     this.content = content;
   }
 
-  public String getFontFamily() {
-    return fontFamily;
-  }
-
-  public void setFontFamily(String fontFamily) {
-    this.fontFamily = fontFamily;
-  }
-
-  public int getFontSize() {
-    return fontSize;
-  }
-
-  public void setFontSize(int fontSize) {
-    this.fontSize = fontSize;
-  }
-
-  public boolean isBold() {
-    return isBold;
-  }
-
-  public void setBold(boolean bold) {
-    isBold = bold;
-  }
-
   public void render() {
-    System.out.printf("(%d, %d): %s [%s]\n", row, column, content, fontFamily);
+    System.out.printf("(%d, %d): %s [%s]\n", row, column, content, cellFormat.getFontFamily());
+  }
+
+  public void setCellFormat(CellFormat cellContext) {
+    this.cellFormat = cellContext;
+  }
+  public CellFormat getCellFormat() {
+    return cellFormat;
   }
 }
